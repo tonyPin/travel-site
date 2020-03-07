@@ -44,8 +44,9 @@ let config = {
     rules: [
           cssConfig
         ]
-      }
-  }
+      ,
+    }
+};
 
 if(currentTask == 'dev'){
   cssConfig.use.unshift('style-loader')
@@ -80,15 +81,16 @@ if(currentTask == 'build'){
   cssConfig.use.unshift(MiniCssExtractPlugin.loader)
   postCSSPlugins.push(require('cssnano'))
   config.output = {
+    publicPath:'/travel-site',
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'docs')
   }
   config.mode = 'production'
 
-config.optimization = {
+/*config.optimization = {
   splitChunks:{chunks: 'all'}
-}
+}*/
 
 config.plugins.push(
   new CleanWebpackPlugin(),
