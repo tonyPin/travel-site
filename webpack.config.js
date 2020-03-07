@@ -81,7 +81,7 @@ if(currentTask == 'build'){
   cssConfig.use.unshift(MiniCssExtractPlugin.loader)
   postCSSPlugins.push(require('cssnano'))
   config.output = {
-    publicPath:'/travel-site',
+    publicPath:'/travel-site/',
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'docs')
