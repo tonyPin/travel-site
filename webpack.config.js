@@ -4,6 +4,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const fse = require('fs-extra')
+const urlLoader = require('url-loader')
 
 const postCSSPlugins = [
   require('postcss-import'),
@@ -42,9 +43,15 @@ let config = {
   plugins: pages,
   module: {
     rules: [
-          cssConfig
+          cssConfig,
+          {
+        test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
+        loader: 'url-loader',
+        options: {
+          limit: 8192,
+        },
+      },
         ]
-      ,
     }
 };
 
@@ -78,13 +85,8 @@ if(currentTask == 'build'){
     }
   })
 
-  //cssConfig.use.unshift(MiniCssExtractPlugin.loader)
-  cssConfig.use.unshift({
-    loader: MiniCssExtractPlugin.loader,
-    options: {
-      publicPath: '/travel-site/'
-    }
-  })
+  cssConfig.use.unshift(MiniCssExtractPlugin.loader)
+
   postCSSPlugins.push(require('cssnano'))
   config.output = {
 
