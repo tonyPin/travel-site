@@ -41,9 +41,34 @@ let cssConfig = {
 let config = {
   entry: './app/assets/scripts/App.js',
   plugins: pages,
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 30000,
+
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 6,
+      maxInitialRequests: 4,
+      automaticNameDelimiter: '~',
+      automaticNameMaxLength: 30,
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
+    }
+  },
   module: {
     rules: [
           cssConfig,
+
           {
         test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
         loader: 'url-loader',
@@ -93,12 +118,14 @@ if(currentTask == 'build'){
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'docs')
+
   }
+
   config.mode = 'production'
 
-/*config.optimization = {
-  splitChunks:{chunks: 'all'}
-}*/
+// config.optimization = {
+     //splitChunks: {chunks: 'all'}}
+
 
 config.plugins.push(
   new CleanWebpackPlugin(),
