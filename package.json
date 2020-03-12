@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "netlify deploy --dir=docs",
+    "build:deploy": "npm run build && npm run deploy"
   },
   "repository": {
     "type": "git",
