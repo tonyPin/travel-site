@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/tonyPin/travel-site#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "lodash": "^4.17.15",
     "normalize.css": "^8.0.1"
   },
