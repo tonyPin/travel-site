@@ -22,7 +22,7 @@
   "homepage": "https://github.com/tonyPin/travel-site#readme",
   "dependencies": {
     "axios": "^0.19.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
